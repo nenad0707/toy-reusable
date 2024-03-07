@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  AZURE_RESOURCEGROUP_NAME: ToyReusable
+  AZURE_RESOURCEGROUP_NAME: rg_sb_eastus_89803_1_17098460065
   AZURE_REGION: westus3
   TEMPLATE_SPEC_NAME: linux-app-service
   TEMPLATE_SPEC_FILE_PATH: template-specs/linux-app-service/main.bicep
