@@ -24,7 +24,7 @@ $resourceGroup = Get-AzResourceGroup -Name rg_sb_eastus_89803_1_17098460065
 New-AzADServicePrincipal -AppId $applicationRegistration.AppId
 New-AzRoleAssignment `
   -ApplicationId $applicationRegistration.AppId `
-  -RoleDefinitionName Contributor `
+  -RoleDefinitionName Owner `
   -Scope $resourceGroup.ResourceId
 
 $azureContext = Get-AzContext
