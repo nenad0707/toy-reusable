@@ -21,12 +21,11 @@ $applicationRegistration = New-AzADApplication -DisplayName $DisplayName
 Write-Host "Azure AD Application created with ID: $($applicationRegistration.AppId)"
 
 # Adding federated credential to the application
-New-AzADAppFederatedCredential `
-  -Name 'toy-reusable-branch' `
+New-AzADAppFederatedCredential -Name "$DisplayName-branch" `
   -ApplicationObjectId $applicationRegistration.Id `
   -Issuer 'https://token.actions.githubusercontent.com' `
   -Audience 'api://AzureADTokenExchange' `
-  -Subject "repo:$($githubOrganizationName)/$($githubRepositoryName):ref:refs/heads/main"
+  -Subject "repo:$($GitHubOrganizationName)/$($GitHubRepositoryName):ref:refs/heads/main"
 
 Write-Host "Federated Credential added to the application"
 
@@ -44,8 +43,7 @@ New-AzRoleAssignment `
 
 Write-Host "Role 'Contributor' assigned to the application within the resource group scope"
 
-# Displaying important information
 $azureContext = Get-AzContext
 Write-Host "AZURE_CLIENT_ID: $($applicationRegistration.AppId)"
 Write-Host "AZURE_TENANT_ID: $($azureContext.Tenant.Id)"
-Write-Host "AZURE_SUBSCRIPTION_ID: $($azureContext.Subscription.Id)"
+Write-Host "AZURE_SUBSCRIPTION_ID: $($azureContext.Subscription.Id)"   ## write these secrets to github secrets
