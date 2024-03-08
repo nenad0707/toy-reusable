@@ -21,11 +21,12 @@ $applicationRegistration = New-AzADApplication -DisplayName $DisplayName
 Write-Host "Azure AD Application created with ID: $($applicationRegistration.AppId)"
 
 # Adding federated credential to the application
-New-AzADAppFederatedCredential -Name "$DisplayName-branch" `
+New-AzADAppFederatedCredential `
+  -Name 'toy-reusable-branch' `
   -ApplicationObjectId $applicationRegistration.Id `
   -Issuer 'https://token.actions.githubusercontent.com' `
   -Audience 'api://AzureADTokenExchange' `
-  -Subject "repo:$GitHubOrganizationName/$GitHubRepositoryName:ref:refs/heads/main" `
+  -Subject "repo:$($githubOrganizationName)/$($githubRepositoryName):ref:refs/heads/main"
 
 Write-Host "Federated Credential added to the application"
 
