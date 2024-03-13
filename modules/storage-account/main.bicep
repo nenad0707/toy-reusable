@@ -8,12 +8,11 @@ param location string = resourceGroup().location
 
 @description('The name of the SKU to use for the Azure Storage account.')
 param storageAccountSkuName string = 'Standard_LRS'
+param vmName string
 
 var softDeleteRetentionPeriodDays = 7
 
-// This module is an example only.
-// It follows some, but not all, of the guidance described at https://docs.microsoft.com/azure/storage/blobs/security-recommendations
-
+// This resource block defines the storage account resource
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
   location: location
@@ -41,4 +40,32 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+// This resource block defines the virtual machine resource
+resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
+  name: vmName
+  location: location
+  properties: {
+    hardwareProfile: {
+      vmSize: 'Standard_D2s_v3'
+    }
+    storageProfile: {
+      imageReference: {
+        publisher: 'Canonical'
+        offer: 'UbuntuServer'
+        sku: '18.04-LTS'
+        version: 'latest'
+      }
+      osDisk: {
+        createOption: 'FromImage'
+        managedDisk: {
+          storageAccountType: 'StandardSSD_LRS'
+        }
+      }
+    }
+  }
+}
+
+// This variable stores the name of the storage account
 output storageAccountName string = storageAccount.name
+*/
+// Terminate the multi-line comment
