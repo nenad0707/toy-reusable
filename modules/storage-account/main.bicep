@@ -69,3 +69,5 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
 output storageAccountName string = storageAccount.name
 */
 // Terminate the multi-line comment
+
+// This is a comment explaining the purpose of the storage account resource block
