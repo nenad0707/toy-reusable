@@ -62,7 +62,6 @@ artifacts/
 *.tlh
 *.tmp
 *.tmp_proj
-*.log
 *.vspscc
 *.vssscc
 .builds
@@ -140,8 +139,6 @@ publish/
 *.[Pp]ublish.xml
 *.azurePubxml
 
-*.log
-
 # NuGet Packages
 *.nupkg
 
@@ -150,4 +147,3 @@ publish/
 
 # Windows Azure Build Output
 csx/
-
