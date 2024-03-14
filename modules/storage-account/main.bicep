@@ -12,6 +12,8 @@ param vmName string
 
 var softDeleteRetentionPeriodDays = 7
 
+// This is a multi-line comment that explains the purpose of the storage account resource block
+
 // This resource block defines the storage account resource
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
@@ -20,9 +22,16 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   sku: {
     name: storageAccountSkuName
   }
+  //make sugestions for the properties
   properties: {
     supportsHttpsTrafficOnly: true
     allowSharedKeyAccess: false
+    networkAcls: {
+      defaultAction: 'Deny'
+      bypass: 'AzureServices'
+      virtualNetworkRules: []
+      ipRules: []
+    }
   }
 
   resource blobService 'blobServices' = {
