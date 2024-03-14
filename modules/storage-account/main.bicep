@@ -10,7 +10,7 @@ param location string = resourceGroup().location
 param storageAccountSkuName string = 'Standard_LRS'
 param vmName string
 
-var softDeleteRetentionPeriodDays = 7
+var softDeleteRetentionPeriodDays = 5
 
 // This is a multi-line comment that explains the purpose of the storage account resource block
 
@@ -76,7 +76,3 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
 
 // This variable stores the name of the storage account
 output storageAccountName string = storageAccount.name
-*/
-// Terminate the multi-line comment
-
-// This is a comment explaining the purpose of the storage account resource block
