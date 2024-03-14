@@ -10,7 +10,7 @@ param location string = resourceGroup().location
 param storageAccountSkuName string = 'Standard_LRS'
 param vmName string
 
-var softDeleteRetentionPeriodDays = 5
+var softDeleteRetentionPeriodDays = 7
 
 // This is a multi-line comment that explains the purpose of the storage account resource block
 
